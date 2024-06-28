@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-filenames = [f'atp_matches_{i}.csv' for i in range(1991, 2025)]
+filenames = [f'data/atp_matches_{i}.csv' for i in range(1991, 2025)]
 
 years = list(range(1991, 2025))
 w_1stIn_mean = []
