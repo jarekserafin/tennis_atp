@@ -10,16 +10,16 @@ def parse(t):
     string_ = str(t)
     try:
         return datetime.date(int(string_[:4]), int(string[4:6]), int(string[6:]))
-    except:
-	print "Erro",len(string_)
-        return datetime.date(1900,1,1)
+    except():
+	    print("Erro",len(string_))
+    return datetime.date(1900,1,1)
     
 def readAllFiles(dirname):
     allFiles = glob.glob(dirname + "/atp_rankings_" + "*.csv")
     ranks = pd.DataFrame()
     list_ = list()
     for filen in allFiles:
-	print filen
+	    print(filen)
         df = pd.read_csv(filen,
                          index_col=None,
                          header=None,
