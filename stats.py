@@ -59,3 +59,5 @@ plt.axhline(y=0, color='gray', linestyle='--')
 
 plt.legend()
 plt.show()
+
+#%%
