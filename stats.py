@@ -12,6 +12,7 @@ winner_ht = []
 winner_age = []
 loser_age = []
 difference = []
+match_length = []
 
 for filename in filenames:
     data = pd.read_csv(filename)
@@ -21,6 +22,7 @@ for filename in filenames:
     mean_winner_ht = data['winner_ht'].mean()
     mean_winner_age = data['winner_age'].mean()
     mean_loser_age = data['loser_age'].mean()
+    mean_match_length = data['minutes'].mean()
 
     winners_right_or_left_hand_percent = (data[(data['winner_hand'] == 'R') | (data['winner_hand'] == 'U')].shape[0] / data.shape[0]) * 100
 
@@ -31,6 +33,7 @@ for filename in filenames:
     winner_age.append(mean_winner_age)
     loser_age.append(mean_loser_age)
     difference.append(mean_winner_age - mean_loser_age)
+    match_length.append(mean_match_length)
 
 # Tworzenie dataframe
 stats_per_year = pd.DataFrame(
@@ -41,7 +44,8 @@ stats_per_year = pd.DataFrame(
      'winner_height': winner_ht,
      'winner_age': winner_age,
      'loser_age': loser_age,
-     'diff of age': difference
+     'diff_of_age': difference,
+     'match_length': match_length
      })
 
 print(stats_per_year.head())
@@ -49,7 +53,7 @@ print(stats_per_year.head())
 # Wykresy
 # plt.plot(stats_per_year['years'], stats_per_year['winner_age'], label='Winner')
 # plt.plot(stats_per_year['years'], stats_per_year['loser_age'], label='Loser')
-plt.plot(stats_per_year['years'], stats_per_year['diff of age'], label='Diff')
+plt.plot(stats_per_year['years'], stats_per_year['match_length'], label='')
 plt.axhline(y=0, color='gray', linestyle='--')
 
 
