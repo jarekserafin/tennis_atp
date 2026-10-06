@@ -1,10 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 
-filenames = [f'data/atp_matches_{i}.csv' for i in range(1991, 2025)]
+data_dir = Path(__file__).resolve().parent / 'data'
+filenames = sorted(path for path in data_dir.glob('atp_matches_[0-9][0-9][0-9][0-9].csv')
+                   if int(path.stem.rsplit('_', 1)[1]) >= 1991)
+if not filenames:
+    raise FileNotFoundError('Brak danych meczowych. Uruchom: python update_data.py')
 
-years = list(range(1991, 2025))
+years = [int(path.stem.rsplit('_', 1)[1]) for path in filenames]
 w_1stIn_mean = []
 w_df = []
 winner_hand_percent = []
