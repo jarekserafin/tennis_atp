@@ -150,14 +150,3 @@ python3 -m unittest discover -s tests -v
 
 These tests run offline and cover file selection, repeated updates, integrity and schema validation, and preserving existing data after a download failure.
 
-## Current limitations
-
-- `tennis.ipynb` constructs paths containing `tennis_atp/data/` beneath the working directory. When launched from the repository root, those paths need to be changed to `data/...`.
-- A cell in `tennis.ipynb` refers to undefined `match_data`; the loaded tables are named `match_data_2003` and `match_data_2023`. The notebook contains a saved `NameError` from this cell.
-- Manual playing-hand corrections in `tennis.ipynb` depend on the original row indices and may not apply to a different data snapshot.
-- `tennis.ipynb` selects the ranking date `20240527` from `atp_rankings_current.csv`. That date is absent from the updated 2026 snapshot; the date selection and manual corrections need to be revisited before running that notebook.
-- In the main notebook, player biographies are repeated for each ranking date. Statistics such as height distribution therefore describe ranking records, rather than a sample of unique players.
-- Match statistics and biographical fields contain missing values. Analyses use available values and, in some cells, explicit filters; there is no shared data-cleaning pipeline.
-- Full historical rankings are loaded into memory, which can require substantial RAM.
-- Dependencies in `requirements.txt` are not pinned to specific versions. Saved notebook outputs may have been generated with different package versions.
-- Automated tests cover the data updater. There is no Makefile, automated analysis test suite, or report-export pipeline.
